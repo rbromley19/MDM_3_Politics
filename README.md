@@ -1,1 +1,1 @@
-# MDM-3-Politics
+Remember to comment code and briefly describe commits 
