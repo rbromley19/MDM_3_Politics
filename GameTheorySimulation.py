@@ -54,10 +54,47 @@ def GameTheoryODE(playersOpinions, partyPopularities): # returns a new list of p
     return listOfOpinions
 
 
+def GenerateRandomPoints(numPoints, numDimensions):
+    listOfPoints = []
+    for point in range(numPoints):
+        pointCentre = [0]*numDimensions
+        for dimension in range(numDimensions):
+            pointCentre[dimension] = round(random.uniform(-1, 1),2)
+        listOfPoints.append(pointCentre)
+    
+    return listOfPoints
+
+
+def CalculateDistanceToEachParty(point, listOfParties):
+    listOfDistances = []
+    for party in listOfParties:
+        distance = 0
+        for dim in range(len(point)):
+            distance += abs(point[dim] - party[dim])
+        listOfDistances.append(round(distance,2))
+
+    return listOfDistances
+
+
+def PreferenceScoreFromDistance(distances):
+    listOfPreferences = []
+    minDistance = min(distances)
+    for dis in distances:
+        prefScore = 10 - (dis - minDistance)*6.5
+        listOfPreferences.append(round(prefScore,2))
+    
+    return listOfPreferences
+
+
 
 def run(numParties, numPlayers):
     listOfPartyPop = []
-    opinions = GenerateRandomOpinions(numParties, numPlayers)
+    #opinions = GenerateRandomOpinions(numParties, numPlayers)
+    people = GenerateRandomPoints(numPlayers, 4)
+    parties = GenerateRandomPoints(numParties, 4)
+    opinions = []
+    for person in people:
+        opinions.append(PreferenceScoreFromDistance(CalculateDistanceToEachParty(person, parties)))
     partyPop = PartyPopularities(opinions, numParties)
     listOfPartyPop.append(partyPop)
     for i in range(26):
@@ -67,11 +104,11 @@ def run(numParties, numPlayers):
     listOfParties = [1,2,3,4,5,6]
     for i in range(25):
         plt.bar(listOfParties, listOfPartyPop[i])
-        plt.ylim(0,600)
+        plt.ylim(0,round(6*numPlayers/10))
         plt.title('Party Votes Changing with Tactical Voting')
         plt.xlabel('Parties')
         plt.ylabel('Number Of Votes')
-        plt.savefig('Time = '+ str(i),bbox_inches='tight')
+        plt.savefig('1'*i,bbox_inches='tight')
         plt.clf()
 
 import cv2
