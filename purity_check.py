@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-def purity_check(labels,data):
+def purity_check(labels,data,n_clusters):
     purity_check = pd.DataFrame({'Cluster Labels' : labels})
     purity_check['Vote'] = data['generalElectionVote']
     cluster_purity_list=[]
