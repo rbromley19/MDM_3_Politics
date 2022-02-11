@@ -17,10 +17,12 @@ def extract_data(input_name,output_name,output_or_return):
     immig_list = ['immigCultural','immigSelf','changeImmig','immigEcon','controlImmig']
     health_list = ['selfPriorities_nhs','effectsEUNHS','changeNHS']
     brexit_list = ['EUIntegrationSelf','cantLiveWithEU_1','cantLiveWithEU_2','cantLiveWithEU_3','cantLiveWithEU_4','selfPriorities_brexit','euRefVote','dealVremain','remainVnodeal','effectsEUUnemployment','effectsEUTrade','effectsEUImmigration','effectsEUTerror','effectsEUEcon','dealGoodBad','happyEULeave','euID','euRefDoOver','cancelBrexit']
+    welfare_list = ['welfarePreference']
     
     #join list together and flaten for use in pandas, adding the partyiD as a label
-    total_list = [economy_list,enviornment_list,immig_list,health_list,brexit_list]
+    total_list = [economy_list,enviornment_list,immig_list,health_list,brexit_list,welfare_list]
     flat_list = [item for l in total_list for item in l]
+    flat_list.insert(0,'generalElectionVote')
     flat_list.insert(0,'partyId')
   
     
@@ -37,7 +39,8 @@ def extract_data(input_name,output_name,output_or_return):
     extracted_data['selfPriorities_econ'] = extracted_data['selfPriorities_econ'].fillna("Don't know")
     extracted_data['climateChange'] =  extracted_data['climateChange'].fillna("Don't know")
     extracted_data['selfPriorities_environment'] = extracted_data['selfPriorities_environment'].fillna("Don't know")
-    
+    extracted_data['generalElectionVote'] = extracted_data['generalElectionVote'].fillna("Don't know")
+    extracted_data['welfarePreference'] = extracted_data['welfarePreference'].fillna("Don't know")
     
     #0 for file output 1 for return
     if output_or_return ==0:
