@@ -1,0 +1,2 @@
+,"Knn on Reduced Question Set Enum, With: PCA","Knn on Reduced Question Set Enum, With: No Dim Reduction","Knn on Reduced Question Set Enum, With: TSNE","Knn on Reduced Question Set Enum, With: LDA to 5D","Knn on Reduced Question Set Enum, With: NCA","Knn on Reduced Question Set Enum, With: QDA","Knn on Reduced Question Set Enum, With: LDA Then QDA","Knn on Reduced Question Set Enum, With: LDA"
+Purity,0.4681491170699804,0.6054937867887508,0.43505559189012427,0.8341399607586658,0.8064094179202093,0.4404185742315239,0.8279921517331589,0.8105951602354481
