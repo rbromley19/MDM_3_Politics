@@ -9,6 +9,7 @@ def purity_check(labels,data,n_clusters,vote_or_pref='generalElectionVote'):
     
         vote_list = []
         for x in range(purity_check.shape[0]):
+            
             if purity_check.loc[x,'Cluster Labels'] == cluster:
                 vote_list.append(data.loc[x,vote_or_pref])
         vote_list_data_frame = pd.DataFrame({'Assignment':vote_list})
